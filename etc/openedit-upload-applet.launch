@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.javaApplet">
+<stringAttribute key="bad_container_name" value="/openedit-uploader/etc/openedit-upload-apple"/>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/entermedia-uploader/src/org/openedit/uploader/UploadApplet.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.ui.favoriteGroups">
+<listEntry value="org.eclipse.debug.ui.launchGroup.debug"/>
+<listEntry value="org.eclipse.debug.ui.launchGroup.run"/>
+</listAttribute>
+<intAttribute key="org.eclipse.jdt.launching.APPLET_HEIGHT" value="100"/>
+<stringAttribute key="org.eclipse.jdt.launching.APPLET_NAME" value=""/>
+<mapAttribute key="org.eclipse.jdt.launching.APPLET_PARAMETERS">
+<mapEntry key="compact" value="true"/>
+<mapEntry key="cookies" value="openedit.usermanager.autologinUn1qu3_str1ng=adminOEWITHOEDESGSCmW2jeuoI=;openedit.usermanager.autologin/archivesUn1qu3_str1ng=adminOEWITHOEDESl/3Zgvj7X4qSK5bEkjPrrXs0tD6Rn47n;JSESSIONID=abcBSkEJ1uJUl4O0pCNbs;"/>
+<mapEntry key="savepath" value="/specs"/>
+<mapEntry key="uploadurl" value="http://localhost:8080/archives/openedit/files/upload/uploadfile-finish.html"/>
+</mapAttribute>
+<intAttribute key="org.eclipse.jdt.launching.APPLET_WIDTH" value="350"/>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.openedit.uploader.UploadApplet"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="entermedia-uploader"/>
+</launchConfiguration>

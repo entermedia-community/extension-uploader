@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="default" name="openedit-upload">
+
+  <target name="default" depends="clean, compile, jar, deploy"/>
+	<target name="dependency" depends="default"/>
+  
+    <property file="build.properties"/>
+    <property name="appname" value="${ant.project.name}"/>
+    <property name="org" value="OpenEdit, Inc."/>
+    <property name="src" location="src"/>
+	<property name="testsrc" location="src/javatest"/>
+    <property name="lib" location="lib"/>
+    <property name="doc" location="doc"/>
+    <property name="bin" location="bin"/>
+    <property name="resources" location="resources"/>
+    <property name="build" location="${basedir}/build"/>
+	<property name="webapp" location="${basedir}/webapp"/>
+    <property name="wardir" location="${build}/wartmp"/>
+	<property name="warname" value="oesite.war"/>
+    <property name="webinf" value="${wardir}/WEB-INF"/>
+	<property name="javadocdir" location="${build}/javadoc"/>
+
+	<!-- 
+		========================================================================
+		Anthill build server properties.  These properties will be passed in
+		by anthill when this script is executed on the build server.
+		
+			- "version" is set by the version adapter
+			- "deployDir" is set by anthill.publish.dir
+		========================================================================
+	--> 
+	<tstamp>
+	     <format property="TODAY" pattern="yyyy-MM-dd HH:mm:ss" />
+	 </tstamp>
+
+  	<property name="version"  value="${TODAY}"/>
+  	<property name="deployDir" location="deploy"/>
+  	
+  	<!-- A convenience variable for documentation output -->
+  	<property name="versionedApp" value="${appname}"/>
+  	
+  	<!-- Edit this project dependency list for your project
+		========================================================================
+		Anthill projects this project depends on.
+		========================================================================
+	-->	
+
+  <target name="clean">
+     <delete dir="${build}"/>
+  </target>
+
+  <target name="compile">
+    <mkdir dir="${build}"/>
+    
+    <javac debug="true" destdir="${build}" srcdir="${src}" source="1.5" target="1.5">
+      <classpath>
+        <fileset dir="${lib}">
+          <include name="*.jar"/>
+          <include name="compile/*.jar"/>
+          <include name="depend/*.jar"/>
+        </fileset>
+      </classpath>
+      <include name="**"/>
+    </javac>
+  </target>
+    
+  	<!-- 
+		========================================================================
+		Jar classes for the main app, excluding unit tests.
+		========================================================================
+	-->	  
+	<target name="jar" depends="compile">
+		<mkdir dir="${deployDir}/builds/" />
+		<jar jarfile="${deployDir}/builds/${versionedApp}.jar" basedir="${build}" >
+			<manifest>
+		    	<attribute name="Built-By" value="${user.name}"/>
+			    <attribute name="Implementation-Title" value="${appname}"/>
+			    <attribute name="Implementation-Version" value="${version}"/>
+			    <attribute name="Implementation-Vendor" value="${org}"/>
+		    </manifest>
+		</jar>
+		<signjar   alias="openedit-upload" keystore="./etc/keystore/openedit"
+		    storepass="zxcvbnm"
+		     jar="${deployDir}/builds/${versionedApp}.jar" >
+		</signjar>
+
+  </target>
+    
+	 
+  <target name="deploy">
+  	<copy file="${deployDir}/builds/${versionedApp}.jar" overwrite="true"
+  		        tofile="../entermedia/webapp/WEB-INF/base/system/${versionedApp}.jar"/>
+  </target>
+      
+	
+</project>
