@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project basedir="." default="default" name="openedit-upload">
+<project basedir="." default="default" name="extension-uploader">
 
   <target name="default" depends="clean, compile, jar, deploy"/>
 	<target name="dependency" depends="default"/>
